@@ -1,0 +1,146 @@
+mysql> create table table1 (
+    -> sr_no INT NOT NULL AUTO_INCREMENT,
+    -> c_id INT,
+    -> c_name VARCHAR(50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 4
+mysql>
+mysql>
+mysql>
+mysql> CREATE TABLE myTable (
+    ->   S_NO INT NOT NULL AUTO_INCREMENT,
+    ->   C_ID INT NOT NULL,
+    ->   C_NAME VARCHAR(50) NOT NULL,
+    ->   C_CITY VARCHAR(50) NOT NULL,
+    ->   PRIMARY KEY (S_NO)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql>
+mysql> INSERT INTO myTable (C_ID, C_NAME, C_CITY) VALUES
+    ->   (1, 'DOMINOS', 'LOS ANGELES'),
+    ->   (2, 'PIZZA HUT', 'SAN FRANCISCO'),
+    ->   (3, 'PAPA JOHNS', 'SAN DIEGO'),
+    ->   (4, 'AH PIZZ', 'FREMONT'),
+    ->   (5, 'NINO PIZZA', 'LAS VEGAS'),
+    ->   (6, 'PIZZERIA', 'BOSTON'),
+    ->   (7, 'CHUCK E CHEESE', 'CHICAGO'));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 8
+mysql> INSERT INTO myTable (C_ID, C_NAME, C_CITY) VALUES
+    ->   (1, 'DOMINOS', 'LOS ANGELES'),
+    ->   (2, 'PIZZA HUT', 'SAN FRANCISCO'),
+    ->   (3, 'PAPA JOHNS', 'SAN DIEGO'),
+    ->   (4, 'AH PIZZ', 'FREMONT'),
+    ->   (5, 'NINO PIZZA', 'LAS VEGAS'),
+    ->   (6, 'PIZZERIA', 'BOSTON'),
+    ->   (7, 'CHUCK E CHEESE', 'CHICAGO');
+Query OK, 7 rows affected (0.05 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM MYTABLE;
++------+------+----------------+---------------+
+| S_NO | C_ID | C_NAME         | C_CITY        |
++------+------+----------------+---------------+
+|    1 |    1 | DOMINOS        | LOS ANGELES   |
+|    2 |    2 | PIZZA HUT      | SAN FRANCISCO |
+|    3 |    3 | PAPA JOHNS     | SAN DIEGO     |
+|    4 |    4 | AH PIZZ        | FREMONT       |
+|    5 |    5 | NINO PIZZA     | LAS VEGAS     |
+|    6 |    6 | PIZZERIA       | BOSTON        |
+|    7 |    7 | CHUCK E CHEESE | CHICAGO       |
++------+------+----------------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> ALTER TABLE MYTABLE MODIFY(PRIMARY KEY(C_ID));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(PRIMARY KEY(C_ID))' at line 1
+mysql>
+mysql>
+mysql> CREATE TABLE MYTABLE1 (
+    ->   S_NO INT NOT NULL AUTO_INCREMENT,
+    ->   ITEM_ID INT NOT NULL,
+    ->   ITEM_NAME VARCHAR(50) NOT NULL,
+    ->   UNITS_SOLD INT NOT NULL,
+    ->   C_ID INT NOT NULL,
+    ->   PRIMARY KEY (S_NO)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> INSERT INTO MYTABLE1 (ITEM_ID, ITEM_NAME, UNITS_SOLD, C_ID) VALUES
+    -> (1,'LARGE PIZZA',5,2);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO MYTABLE1 (ITEM_ID, ITEM_NAME, UNITS_SOLD, C_ID) VALUES
+    -> (2,'GARLIC KNOTS',6,3),
+    -> (2,'LARGE PIZZA',3,3),
+    -> (2,'LARGE PIZZA',3,3),
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 4
+mysql> (2,'GARLIC KNOTS',6,3),
+    -> (3,'LARGE PIZZA',3,3),
+    -> (4,'MEDIUM PIZZA',8,4),
+    -> (5,'BREADSTICKS',7,1),
+    -> (6,'MEDIUM PIZZA',11,1),
+    -> (7,'SMALL PIZZA',9,6),
+    -> (8,'SMALL PIZZA',6,7);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2,'GARLIC KNOTS',6,3),
+(3,'LARGE PIZZA',3,3),
+(4,'MEDIUM PIZZA',8,4),
+(5,'BREADS' at line 1
+mysql> INSERT INTO MYTABLE1 (ITEM_ID, ITEM_NAME, UNITS_SOLD, C_ID) VALUES
+    -> (2,'GARLIC KNOTS',6,3),
+    -> (3,'LARGE PIZZA',3,3),
+    -> (4,'MEDIUM PIZZA',8,4),
+    -> (5,'BREADSTICKS',7,1),
+    -> (6,'MEDIUM PIZZA',11,1),
+    -> (7,'SMALL PIZZA',9,6),
+    -> (8,'SMALL PIZZA',6,7);
+Query OK, 7 rows affected (0.05 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM MYTABLE;
++------+------+----------------+---------------+
+| S_NO | C_ID | C_NAME         | C_CITY        |
++------+------+----------------+---------------+
+|    1 |    1 | DOMINOS        | LOS ANGELES   |
+|    2 |    2 | PIZZA HUT      | SAN FRANCISCO |
+|    3 |    3 | PAPA JOHNS     | SAN DIEGO     |
+|    4 |    4 | AH PIZZ        | FREMONT       |
+|    5 |    5 | NINO PIZZA     | LAS VEGAS     |
+|    6 |    6 | PIZZERIA       | BOSTON        |
+|    7 |    7 | CHUCK E CHEESE | CHICAGO       |
++------+------+----------------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM MYTABLE1;
++------+---------+--------------+------------+------+
+| S_NO | ITEM_ID | ITEM_NAME    | UNITS_SOLD | C_ID |
++------+---------+--------------+------------+------+
+|    1 |       1 | LARGE PIZZA  |          5 |    2 |
+|    2 |       2 | GARLIC KNOTS |          6 |    3 |
+|    3 |       3 | LARGE PIZZA  |          3 |    3 |
+|    4 |       4 | MEDIUM PIZZA |          8 |    4 |
+|    5 |       5 | BREADSTICKS  |          7 |    1 |
+|    6 |       6 | MEDIUM PIZZA |         11 |    1 |
+|    7 |       7 | SMALL PIZZA  |          9 |    6 |
+|    8 |       8 | SMALL PIZZA  |          6 |    7 |
++------+---------+--------------+------------+------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT MYTABLE.*,MYTABLE1.*
+    -> FROM MYTABLE
+    -> INNER JOIN MYTABLE1
+    -> ON MYTABLE.C_ID=MYTABLE1.C_ID;
++------+------+----------------+---------------+------+---------+--------------+------------+------+
+| S_NO | C_ID | C_NAME         | C_CITY        | S_NO | ITEM_ID | ITEM_NAME    | UNITS_SOLD | C_ID |
++------+------+----------------+---------------+------+---------+--------------+------------+------+
+|    2 |    2 | PIZZA HUT      | SAN FRANCISCO |    1 |       1 | LARGE PIZZA  |          5 |    2 |
+|    3 |    3 | PAPA JOHNS     | SAN DIEGO     |    2 |       2 | GARLIC KNOTS |          6 |    3 |
+|    3 |    3 | PAPA JOHNS     | SAN DIEGO     |    3 |       3 | LARGE PIZZA  |          3 |    3 |
+|    4 |    4 | AH PIZZ        | FREMONT       |    4 |       4 | MEDIUM PIZZA |          8 |    4 |
+|    1 |    1 | DOMINOS        | LOS ANGELES   |    5 |       5 | BREADSTICKS  |          7 |    1 |
+|    1 |    1 | DOMINOS        | LOS ANGELES   |    6 |       6 | MEDIUM PIZZA |         11 |    1 |
+|    6 |    6 | PIZZERIA       | BOSTON        |    7 |       7 | SMALL PIZZA  |          9 |    6 |
+|    7 |    7 | CHUCK E CHEESE | CHICAGO       |    8 |       8 | SMALL PIZZA  |          6 |    7 |
++------+------+----------------+---------------+------+---------+--------------+------------+------+
+8 rows in set (0.03 sec)
+
+mysql>
